@@ -16,18 +16,18 @@
     </head>
     <body class="font-sans text-gray-900 antialiased bg-[#3E92CC] dark:bg-gray-900">
         <div class="justify-self-end me-5 mt-5">
-            @if (request()->routeIs('login'))
+            @if (request()->routeIs('login') || request()->is('/'))
                 <a 
                     href="{{ route('register') }}" 
                     class="inline-flex items-center px-4 py-2 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest bg-[#F9A826] hover:bg-[#D88F20] transition ease-in-out duration-150">
                     Regístrate
                 </a>
             @else
-            <a 
-                href="{{ route('login') }}" 
-                class="inline-flex items-center px-4 py-2 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest bg-[#F9A826] hover:bg-[#D88F20] transition ease-in-out duration-150">
-                Iniciar sesión
-            </a>
+                <a 
+                    href="{{ route('login') }}" 
+                    class="inline-flex items-center px-4 py-2 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest bg-[#F9A826] hover:bg-[#D88F20] transition ease-in-out duration-150">
+                    Iniciar sesión
+                </a>
             @endif
             
         </div>
