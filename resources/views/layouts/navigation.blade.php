@@ -28,14 +28,17 @@
         <a href="{{ route('profile.edit') }}" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
             <i class="fas fa-cogs mr-2"></i> Mi perfil
         </a>
-        <a 
-            href="#" 
-            class="block px-4 py-2 rounded-md text-white hover:bg-[#F44336] hover:text-white" 
-            href="route('logout')"
-            onclick="event.preventDefault();
-            this.closest('form').submit();"
-        > <!-- Rojo -->
-            <i class="fas fa-sign-out-alt mr-2"></i> Salir
-        </a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a 
+                href="#" 
+                class="block px-4 py-2 rounded-md text-white hover:bg-[#F44336] hover:text-white" 
+                href="route('logout')"
+                onclick="event.preventDefault();
+                this.closest('form').submit();"
+            > <!-- Rojo -->
+                <i class="fas fa-sign-out-alt mr-2"></i> Salir
+            </a>
+        </form>
     </nav>
 </div>
