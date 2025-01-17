@@ -13,17 +13,17 @@
 
     <!-- Navigation Links -->
     <nav class="flex-1 px-2 space-y-1 mt-2">
-        <a href="#" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
+        <a href="{{ route('users.index') }}" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
             <i class="fas fa-users mr-2"></i> Usuarios
         </a>
         <a href="#" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
-            <i class="fas fa-home mr-2"></i> Roles
+            <i class="fa fa-user-cog mr-2"></i> Roles
         </a>
         <a href="#" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
-            <i class="fas fa-home mr-2"></i> Permisos
+            <i class="fa-solid fa-key mr-2"></i> Permisos
         </a>
         <a href="#" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
-            <i class="fas fa-home mr-2"></i> videojuegos
+            <i class="fa-solid fa-gamepad mr-2"></i> videojuegos
         </a>
         <a href="{{ route('profile.edit') }}" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
             <i class="fas fa-cogs mr-2"></i> Mi perfil
