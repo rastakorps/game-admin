@@ -9,6 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 class UserController extends Controller
 {
     const USERS_INDEX = 'users.index';
+    const USERS_CREATE = 'users.create';
 
     public function index()
     {
@@ -17,5 +18,15 @@ class UserController extends Controller
         }
 
         return view(self::USERS_INDEX);
+    }
+
+    public function create()
+    {
+        return view(self::USERS_CREATE);
+    }
+
+    public function store()
+    {
+        return view(self::USERS_CREATE);
     }
 }
