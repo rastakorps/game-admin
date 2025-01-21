@@ -5,19 +5,19 @@
         </h2>
     </header>
 
-    <form method="post" action="{{ route('users.store') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('users.store') }}" class="space-y-3">
         @csrf
         @method('patch')
 
         <div class="flex flex-wrap">
-            <div class="w-full sm:w-1/2 px-2">
+            <div class="w-full sm:w-1/2 px-2 pt-2">
                 <div>
                     <x-input-label for="name" :value="__('Nombre')" />
                     <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
                     <x-input-error class="mt-2" :messages="$errors->get('name')" />
                 </div>
             </div>
-            <div class="w-full sm:w-1/2 px-2">
+            <div class="w-full sm:w-1/2 px-2 pt-2">
                 <div>
                     <x-input-label for="email" :value="__('Correo')" />
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
