@@ -12,6 +12,8 @@ class PermissionController extends Controller
 {
     const PERMISSIONS_INDEX = 'permissions.index';
     const PERMISSIONS_CREATE = 'permissions.create';
+    const PERMISSIONS_EDIT = 'permissions.edit';
+
     /**
      * Display a listing of the resource.
      */
@@ -55,27 +57,27 @@ class PermissionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Permission $permission)
     {
-        //
+        return view(self::PERMISSIONS_EDIT, ['permission' => $permission]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PermissionRequest $request, Permission $permission)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $permission->update($request->only('display_name'));
+            DB::commit();
+            return redirect()->route(self::PERMISSIONS_INDEX)->with('success', 'Se ha actualizado el permiso');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route(self::PERMISSIONS_INDEX)->withInput()->with('error', $e->getMessage());
+        }
     }
 
     /**

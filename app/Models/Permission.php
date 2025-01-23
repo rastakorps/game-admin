@@ -19,7 +19,7 @@ class Permission extends Model
      */
     public static function datatable()
     {
-        $users = Permission::select(['display_name']);
+        $users = Permission::select(['id', 'display_name']);
 
         return DT::of($users)
             ->addColumn('actions', function ($permission) {
