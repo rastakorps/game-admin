@@ -16,7 +16,7 @@
         <a href="#" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
             <i class="fas fa-users mr-2"></i> Usuarios
         </a>
-        <a href="#" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
+        <a href="{{ route('roles.index') }}" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
             <i class="fas fa-home mr-2"></i> Roles
         </a>
         <a href="{{ route('permissions.index') }}" class="block px-4 py-2 rounded-md text-white hover:bg-[#F9A826] hover:text-white"> <!-- Naranja Brillante -->
