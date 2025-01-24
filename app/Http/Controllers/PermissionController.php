@@ -83,8 +83,13 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        //
+        try {
+            $permission->toggleStatus();
+            return response()->json(['message' => 'Se ha eliminado el permiso correctamente']);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
     }
 }
