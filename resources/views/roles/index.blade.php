@@ -5,8 +5,10 @@
         </h2>
     </x-slot>
     <div class="py-10">
-        <div class="mb-3 text-end">            
-            <a href="{{ route('roles.create') }}">Agregar</a>
+        <div class="mb-3 text-end">
+            <x-primary-link-button href="{{ route('roles.create') }}" icon="fa fa-plus">
+                {{ __('Agregar') }}
+            </x-primary-link-button>
         </div>
 
         <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">

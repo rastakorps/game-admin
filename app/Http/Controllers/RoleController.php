@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreRoleRequest;
 
 class RoleController extends Controller
 {
@@ -28,15 +31,31 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions = Permission::all();
+        return view(self::ROLES_CREATE, compact('permissions'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRoleRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $validated = $request->validated();
+            $role = Role::create($request->only('name'));
+            $role->permissions()->sync($validated['permissions']);
+
+            DB::commit();
+
+            return redirect()->route(self::ROLES_INDEX)->with('success', 'Se ha creado un nuevo rol');
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            logger()->debug($e->getMessage());
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
     }
 
     /**
