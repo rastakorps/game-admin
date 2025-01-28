@@ -7,6 +7,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Yajra\DataTables\Facades\DataTables as DT;
 
 class User extends Authenticatable
 {
@@ -47,5 +48,31 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Display the users table.
+     *
+     * @author José Vega <jose.oakenfold@gmail.com>
+     * @return Datatable
+     */
+    public static function datatable()
+    {
+        $users = User::select(['id', 'name', 'email', 'created_at']);
+
+        /*if (!Auth::user()->isAdmin()) {
+            $query->hideAdmin();
+            $query->hideAuthUser();
+        }*/
+
+        return DT::of($users)
+            ->editColumn('created_at', function ($user) {
+                return $user->created_at ? $user->created_at->format('d/m/Y') : '';
+            })
+            ->addColumn('actions', function ($user) {
+                return view('users.partials.buttons', ['user' => $user]);
+            })
+            ->rawColumns(['actions'])
+            ->make(true);
     }
 }
