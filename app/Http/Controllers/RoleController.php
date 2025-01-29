@@ -7,6 +7,7 @@ use App\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 
 class RoleController extends Controller
 {
@@ -59,27 +60,40 @@ class RoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        $allPermissions = Permission::all();
+        $assignedPermissions = $role->permissions->pluck('id')->toArray();
+        $availablePermissions = $allPermissions->reject(function ($permission) use ($assignedPermissions) {
+            return in_array($permission->id, $assignedPermissions);
+        });
+
+        return view(self::ROLES_EDIT, ['role' => $role->load('permissions'), 'permissions' => $availablePermissions]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        try {
+
+            DB::beginTransaction();
+
+            $validated = $request->validated();
+            $role->update($request->only('name'));
+            $role->permissions()->sync($validated['permissions']);
+
+            DB::commit();
+
+            return redirect()->route(self::ROLES_INDEX)->with('success', 'Se ha actualizado el rol');
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            return redirect()->route(self::ROLES_INDEX)->withInput()->with('error', $e->getMessage());
+        }
     }
 
     /**

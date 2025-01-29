@@ -1,10 +1,4 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100 ps-2">
-            {{ __('Alta de permiso') }}
-        </h2>
-    </header>
-
     <div class="flex flex-wrap">
         <div class="w-full sm:w-1/2 px-2 pt-2">
             <div>

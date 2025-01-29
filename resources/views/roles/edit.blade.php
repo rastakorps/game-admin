@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Editar permiso') }}
+            {{ __('Editar rol') }}
         </h2>
     </x-slot>
 
@@ -11,13 +11,13 @@
                 <div>
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100 ps-2">
-                            {{ __('Edición de permiso') }}
+                            {{ __('Edición de rol') }}
                         </h2>
                     </header>
-                    <form method="post" action="{{ route('permissions.update', ['permission' => $permission]) }}" class="space-y-3">
+                    <form method="post" action="{{ route('roles.update', ['role' => $role]) }}" class="space-y-3">
                         @csrf
                         @method('PUT')
-                        @include('permissions.partials.inputs-form')
+                        @include('roles.partials.inputs-form')
                     </form>
                 </div>
             </div>

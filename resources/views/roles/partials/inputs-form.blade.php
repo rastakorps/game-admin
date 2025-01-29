@@ -1,10 +1,4 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100 ps-2">
-            {{ __('Alta de rol') }}
-        </h2>
-    </header>
-
     <div class="flex flex-wrap">
         <div class="w-full sm:w-1/2 px-2 pt-2">
             <div>
@@ -24,7 +18,7 @@
                         @foreach($permissions as $permission)
                             <div data-id="{{ $permission->id }}" 
                                  class="permission-item cursor-move p-2 mb-2 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600">
-                                {{ $permission->name }}
+                                {{ $permission->display_name }}
                             </div>
                         @endforeach
                     </div>
@@ -37,7 +31,7 @@
                             @foreach($role->permissions as $permission)
                                 <div data-id="{{ $permission->id }}" 
                                      class="permission-item cursor-move p-2 mb-2 bg-blue-100 dark:bg-blue-900 rounded hover:bg-blue-200 dark:hover:bg-blue-800">
-                                    {{ $permission->name }}
+                                    {{ $permission->display_name }}
                                 </div>
                             @endforeach
                         @endif
@@ -55,7 +49,6 @@
             <x-primary-button>{{ __('Guardar') }}</x-primary-button>
         </div>
     </div>
-    
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
